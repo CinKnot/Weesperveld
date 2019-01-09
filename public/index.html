@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<link rel="apple-touch-icon-precomposed" sizes="57x57" href="images/city1-borderless1.png" />
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+	<link href="styl.css" rel="stylesheet" type="text/css" />
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+	<link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.5.0/css/all.css' integrity='sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU' crossorigin='anonymous'>
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<link rel="stylesheet" href="theme1.css">
+
+
+
+</head>
+
+<body>
+	<div id="app">
+		<div v-if="currentView=='index'" class='view login'>
+
+
+			<div class="header">
+
+				<div class="login-logout">
+					<button id="login" v-if="userLogged == false" @click="login(); setcurrentView('main')">Log in</button>
+					<button id="logout" v-if="userLogged == true" @click="logout()">Log out</button>
+				</div>
+			</div>
+
+			<div class="title">
+				<h1>LEEUWENVELD</h1>
+			</div>
+
+			<div class="content">
+				<img class="image1" src="images/city2-borderless2.png" alt="the logo of Leeuwenveld" />
+			</div>
+		</div>
+
+		<div v-if="currentView == 'main' " class='view home'>
+			<div class="header">
+				<img class="image1" src="images/city2-borderless2.png" alt="the logo of Leeuwenveld" />
+			</div>
+
+			<div class="title">
+				<h1>LEEUWENVELD</h1>
+
+			</div>
+
+
+			<div class="content">
+				<div class="steps">
+					<button type="button" v-on:click="setcurrentView('general')">Chat<i class='fa fa-wechat'></i></button>
+					<button type="button" v-on:click="setcurrentView('activities')">Activities<i class="fa fa-calendar"></i></button>
+					<button type="button" v-on:click="setcurrentView('actuals')">News<i class="fa">&#xf1ea;</i></button>
+				</div>
+			</div>
+		</div>
+
+		<div v-if="currentView=='general'" class='view general-chat'>
+			<div class="header">
+				<button type="button" v-on:click="setcurrentView('main')">Back<i class="material-icons">arrow_back</i></button>
+				<img class="image1" src="images/city2-borderless2.png" alt="the logo of Leeuwenveld" />
+			</div>
+
+			<div class="title">
+				<h1>Chat</h1>
+			</div>
+
+			<div id="body">
+
+
+				<div class="chat-window" id="chat-window">
+
+					<div class="each-post" v-for="post in messages" :class="post.user">
+						<div class="username-image">
+							<div class="username">{{post.name}}</div>
+							<div class="image">
+								<img class="profile-image" :src="post.image" alt="profile picture">
+							</div>
+						</div>
+						<div class="post-text">
+							{{post.body}}
+						</div>
+					</div>
+				</div>
+				<div class="submit-div" v-if="userLogged == true">
+					<input id="textInput" type="text">
+					<button id="submit" @click="writeNewPost()">Send</button>
+				</div>
+			</div>
+
+
+			<div class="nav">
+				<button type="button" v-on:click="setcurrentView('general')">Chat<i class='fa fa-wechat'></i></button>
+				<button type="button" v-on:click="setcurrentView('activities')">Activities<i class="fa fa-calendar"></i></button>
+				<button type="button" v-on:click="setcurrentView('actuals')">News<i class="fa">&#xf1ea;</i></button>
+			</div>
+		</div>
+
+		<div v-if="currentView=='topic'" class='view chat-topic'>
+			<div class="header">
+				<button type="button" v-on:click="setcurrentView('general')">Back<i class="material-icons">arrow_back</i></button>
+			</div>
+
+			<div class="title">
+				<h1>#Chat Topic</h1>
+			</div>
+
+			<div class="content">
+
+			</div>
+
+			<div class="nav">
+				Navigation
+			</div>
+		</div>
+
+		<div v-if="currentView=='detail'" class='view chat-detail'>
+
+			<div class="header">
+				<button type="button" v-on:click="setcurrentView('topic')">Back<i class="material-icons">arrow_back</i></button>
+			</div>
+
+			<div class="title">
+				<h1>Message Detail in #Chat Topic</h1>
+			</div>
+
+			<div class="content">
+
+			</div>
+		</div>
+		<div v-if="currentView=='activities'" class='view act-calendar'>
+
+			<div class="header">
+				<button type="button" v-on:click="setcurrentView('detail')">Back<i class="material-icons">arrow_back</i></button>
+			</div>
+
+			<div class="title">
+				<h1>Activity Calendar</h1>
+			</div>
+
+			<div class="content">
+			</div>
+			<div class="nav">
+				<button type="button" v-on:click="setcurrentView('general')">Chat<i class='fa fa-wechat'></i></button>
+				<button type="button" v-on:click="setcurrentView('activities')">Activities<i class="fa fa-calendar"></i></button>
+				<button type="button" v-on:click="setcurrentView('actuals')">News<i class="fa">&#xf1ea;</i></button>
+			</div>
+
+		</div>
+
+		<div v-if="currentView=='overview'" class='view act-info'>
+
+
+			<div class="header">
+				<button type="button" v-on:click="setcurrentView('activities')">Back<i class="material-icons">arrow_back</i></button>
+			</div>
+
+			<div class="title">
+				<h1>Activities</h1>
+			</div>
+
+			<div class="content">
+
+			</div>
+
+
+			<div class="nav">
+				<button type="button" v-on:click="setcurrentView('general')">Chat<i class='fa fa-wechat'></i></button>
+				<button type="button" v-on:click="setcurrentView('activities')">Activities<i class="fa fa-calendar"></i></button>
+				<button type="button" v-on:click="setcurrentView('actuals')">News<i class="fa">&#xf1ea;</i></button>
+			</div>
+		</div>
+
+		<div v-if="currentView=='actuals'" class='view news'>
+
+			<div class="header">
+				<button type="button" v-on:click="setcurrentView('overview')">Back<i class="material-icons">arrow_back</i></button>
+			</div>
+
+			<div class="title">
+				<h1>Latest News</h1>
+			</div>
+
+
+			<div class="content">
+
+			</div>
+
+			<div class="nav">
+				<button type="button" v-on:click="setcurrentView('general')">Chat<i class='fa fa-wechat'></i></button>
+				<button type="button" v-on:click="setcurrentView('activities')">Activities<i class="fa fa-calendar"></i></button>
+				<button type="button" v-on:click="setcurrentView('actuals')">News<i class="fa">&#xf1ea;</i></button>
+			</div>
+
+		</div>
+
+	</div>
+
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+
+	<script src="https://www.gstatic.com/firebasejs/5.7.2/firebase.js"></script>
+	<script>
+		// Initialize Firebase
+		var config = {
+			apiKey: "AIzaSyAyzeOnUbKJvRwLYGVv6-xIJwvYtNwcFk0",
+			authDomain: "leeuwenweesp.firebaseapp.com",
+			databaseURL: "https://leeuwenweesp.firebaseio.com",
+			projectId: "leeuwenweesp",
+			storageBucket: "leeuwenweesp.appspot.com",
+			messagingSenderId: "711080036039"
+		};
+		firebase.initializeApp(config);
+	</script>
+
+	<script src="https://unpkg.com/vue/dist/vue.js"></script>
+	<script src="main.js"></script>
+
+</body>
+
+</html>
