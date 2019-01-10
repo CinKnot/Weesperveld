@@ -9,6 +9,7 @@ var app = new Vue({
 		loadingPost: false,
 		messages: [],
 		currentView: "index",
+		seen: false,
 	},
 	created() {
 		this.getActivitiesData();
@@ -105,6 +106,7 @@ var app = new Vue({
 			console.log(view)
 			this.currentView = view;
 			if (this.currentView == "general") {
+				app.seen = true;
 				app.getPosts();
 			}
 
@@ -120,3 +122,4 @@ var app = new Vue({
 		}
 	}
 });
+

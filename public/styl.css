@@ -42,8 +42,10 @@ button#logout {
 
 .login-logout {
 	display: flex;
-	
-
+	margin-top: 10%;
+	margin-left: 50%;
+	color: white;
+	font-weight: bold;
 }
 
 .login > .title {
@@ -51,6 +53,7 @@ button#logout {
 	font-weight: bold;
 	font-family: 'Open Sans', sans-serif;
 	color: black;
+	margin-top: 10%;
 }
 
 .login > .content {
@@ -66,18 +69,19 @@ button#logout {
 
 .home > .header > img {
 	width: 25%;
-	margin-right: 5%;
+	margin-right: 10%;
 }
 
 .home > .header {
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
+	margin-left: 4%;
+	margin-right: 4%;
 }
 
 .home > .title {
 	text-align: center;
-	font-weight: bold;
 	font-family: 'Open Sans', sans-serif;
 	color: black;
 }
@@ -97,24 +101,18 @@ button#logout {
 }
 
 .home > .content > .steps > button {
-	height: 25%;
-	border: 1px solid #bbd;
-	}
-
-.home > .nav {
-	font-family: 'Open Sans', sans-serif;
-}
-
-.home > .nav > button {
-	width: 33.3%;
-	height: 100%;
-	background-color: white;
+	height: 35%;
+	border-radius: 16px;
+	border: 2px solid black;
 	color: black;
 	font-weight: bold;
+	font-size: 20px;
+	background-color: light grey;
 }
 
+
 button,
-{
+	{
 	text-transform: none;
 	overflow: visible;
 	font-family: inherit;
@@ -127,13 +125,16 @@ button,
 
 .general-chat > .header > img {
 	width: 25%;
-	margin-right: 5%;
+	margin-right: 10%;
 }
 
 .general-chat > .header {
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
+	margin-left: 4%;
+	margin-right: 4%;
+
 }
 
 .general-chat > .title {
@@ -152,18 +153,18 @@ button,
 	justify-content: center;
 	align-items: center;
 }
+
 .chat-window {
-	padding-top: 50px;
-	/*	background: #c5c6e2;*/
-	background: #d6d6c2;
-	width: 300px;
-	height: 300px;
+	background: yellow;
+	width: 100%;
+	height: 100%;
 	overflow-y: scroll;
 	display: flex;
 	flex-direction: column;
 	border-radius: 10px;
 	margin: 20px;
 }
+
 .each-post {
 	min-width: 260px;
 	max-width: 300px;
@@ -171,5 +172,111 @@ button,
 	border-radius: 25px;
 	margin: 0 20px;
 	margin-bottom: 15px;
+	
+}
 
+.word {
+	font-size: 2rem;
+}
+.username-image {
+	padding-top: 5px;
+	width: 100%;
+	height: 40%;
+	display: flex;
+	margin-bottom: 5px;
+}
+
+.username-image > .username {
+	width: 70%;
+	font-size: 2rem;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-size: 12px;
+}
+
+.username-image > .image > img {
+	width: 50px;
+	height: 50px;
+	border-radius: 75px;
+}
+.post-text {
+	padding: 0 5% 5px 5%;
+	word-break: break-all;
+}
+
+.hostpost {
+	align-self: flex-end;
+	background: white;
+}
+
+.otherpost {
+	align-self: flex-start;
+	background: white;
+}
+
+.otherpost .username {
+	order: 1;
+}
+
+.submit-div {
+	width: 450px;
+}
+
+.submit-div > input {
+	border-radius: 25px;
+	border-style: ridge;
+	border-color: blanchedalmond;
+	width: 55%;
+	margin-left: 15%;
+	margin-right: 5%;
+}
+
+button#submit {
+	background-color: white;
+	border-radius: 25px;
+	border-style: none;
+	padding: 5px 7px;
+	margin-bottom: 1%;
+}
+
+.nav {
+	font-family: 'Open Sans', sans-serif;
+}
+
+.nav > button {
+	width: 33.3%;
+	height: 100%;
+	background-color: lightgray;
+	color: black;
+	font-weight: bold;
+}
+/* Modal Content */
+.modal-content {
+  background-color: #fefefe;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 50%;
+}
+
+/* The Close Button */
+.close {
+  color: #aaaaaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+.pop {
+	font-weight: bold;
+}
+.feat {
+	color:skyblue;
 }

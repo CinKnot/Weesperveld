@@ -43,11 +43,13 @@
 
 		<div v-if="currentView == 'main' " class='view home'>
 			<div class="header">
+				<h1 class="word">LEEUWENVELD</h1>
 				<img class="image1" src="images/city2-borderless2.png" alt="the logo of Leeuwenveld" />
+
 			</div>
 
 			<div class="title">
-				<h1>LEEUWENVELD</h1>
+
 
 			</div>
 
@@ -65,10 +67,22 @@
 			<div class="header">
 				<button type="button" v-on:click="setcurrentView('main')">Back<i class="material-icons">arrow_back</i></button>
 				<img class="image1" src="images/city2-borderless2.png" alt="the logo of Leeuwenveld" />
+
 			</div>
 
 			<div class="title">
 				<h1>Chat</h1>
+
+				<div id="myModal" v-if="seen">
+
+					<!-- Modal content -->
+					<div class="modal-content">
+						<span class="close" @click="seen = false">&times;</span>
+						<h4 class="pop">What's New?</h4>
+						<p><span class="feat">#NewFeature </span>You can now organize and highlight important details with a simple hastag!</p>
+					</div>
+
+				</div>
 			</div>
 
 			<div id="body">
