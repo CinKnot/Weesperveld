@@ -3,6 +3,7 @@ var app = new Vue({
 	data: {
 		url: "https://api.myjson.com/bins/14hs20",
 		activities: [],
+		allActivities: [],
 		data: {},
 		name: 'login',
 		userLogged: false,
@@ -10,33 +11,45 @@ var app = new Vue({
 		messages: [],
 		currentView: "index",
 		seen: false,
-		text: {}
+		text: {},
+		description: '',
+		selectedDate: '',
+		date: '',
 	},
 
 	created() {
-//		this.getActivitiesData();
+		//		this.getActivitiesData();
 		this.checkIfUserLoggedIn();
 	},
 	methods: {
 		getActivitiesData() {
-
-			fetch(this.url, {
-					method: "GET"
-				})
-				.then(r => r.json())
-				.then(json => {
-					app.data = json;
-					app.getPosts();
-					app.myFunction();
-					console.log(app.data);
-
-				})
-				.catch(error => console.log(error))
+			firebase.database().ref('activities').on('value', function (data) {
+				console.log(data.val())
+				app.allActivities = data.val();
+				app.myFunction();
+			})
+			//			fetch(this.url, {
+			//					method: "GET"
+			//				})
+			//				.then(r => r.json())
+			//				.then(json => {
+			//					app.data = json;
+			//				app.activities = json.activities;
+			//					app.allActivities = json.activities;
+			//					app.date = json.date;
+			//
+			//					app.getPosts();
+			//					
+			//					console.log(app.data);
+			//
+			//				})
+			//				.catch(error => console.log(error))
 		},
 		login() {
 			var provider = new firebase.auth.GoogleAuthProvider();
 
 			firebase.auth().signInWithPopup(provider);
+
 
 			console.log("login");
 			app.getPosts();
@@ -183,9 +196,28 @@ var app = new Vue({
 			$('#example3').calendar({
 				type: 'date'
 			});
-		}
+		},
 
 
+
+
+		getSelectedActivities() {
+			var activities = this.allActivities;
+			var filteredActivities = [];
+
+			var selectedDate = $('#example3 input').val()
+
+			for (var i = 0; i < activities.length; i++) {
+				if (activities[i].date == selectedDate) {
+					filteredActivities.push(activities[i]);
+				}
+			}
+			if (selectedDate == "all") {
+				filteredActivities = this.allActivities;
+			}
+			this.activities = filteredActivities;
+			console.log(filteredActivities)
+		},
 
 
 

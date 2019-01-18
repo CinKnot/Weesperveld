@@ -172,12 +172,13 @@ button,
 	border-radius: 25px;
 	margin: 0 20px;
 	margin-bottom: 15px;
-	
+
 }
 
 .word {
 	font-size: 2rem;
 }
+
 .username-image {
 	padding-top: 5px;
 	width: 100%;
@@ -200,6 +201,7 @@ button,
 	height: 50px;
 	border-radius: 75px;
 }
+
 .post-text {
 	padding: 0 5% 5px 5%;
 	word-break: break-all;
@@ -251,33 +253,103 @@ button#submit {
 	color: black;
 	font-weight: bold;
 }
+
 /* Modal Content */
 .modal-content {
-  background-color: #fefefe;
-  margin: auto;
-  padding: 20px;
-  border: 1px solid #888;
-  width: 50%;
+	background-color: #fefefe;
+	margin: auto;
+	padding: 20px;
+	border: 1px solid #888;
+	width: 50%;
 }
 
 /* The Close Button */
 .close {
-  color: #aaaaaa;
-  float: right;
-  font-size: 28px;
-  font-weight: bold;
+	color: #aaaaaa;
+	float: right;
+	font-size: 28px;
+	font-weight: bold;
 }
 
 .close:hover,
 .close:focus {
-  color: #000;
-  text-decoration: none;
-  cursor: pointer;
+	color: #000;
+	text-decoration: none;
+	cursor: pointer;
 }
+
 .pop {
 	font-weight: bold;
 }
+
 .feat {
-	color:skyblue;
+	color: skyblue;
+}
+
+.act-calendar > .content {
+	font-family: 'Open Sans', sans-serif;
+	font-weight: bold;
+	color: black;
+}
+
+/*
+.act-calendar > .content > table {
+	font-family: 'Open Sans', sans-serif;
+	font-weight: bold;
+	color: white;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	height: 100%;
+	table-layout: fixed;
+}
+*/
+.act-calendar > .content {
+	overflow: scroll;
+}
+
+.selection {
+	padding: 15px 25px;
+	font-size: 16px;
+	text-align: center;
+	cursor: pointer;
+	outline: none;
+	color: black;
+	background-color: lightgrey;
+	border: none;
+	border-radius: 15px;
+	box-shadow: 0 9px #999;
+	margin-top: 10%;
+	margin: 10px;
+	padding: 20px;
+}
+
+.selection: hover {
+	background-color: grey
+}
+
+.selection: active {
+	background-color: grey;
+	box-shadow: 0 5px #666;
+	transform: translateY(4px);
+}
+
+.square {
+	display: flex;
+	padding-top: 10%;
+}
+
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  transition: 0.3s;
+  width: 40%;
+}
+
+.card:hover {
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
+.container {
+  padding: 2px 16px;
 }
 
