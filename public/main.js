@@ -11,6 +11,7 @@ var app = new Vue({
 		messages: [],
 		currentView: "index",
 		seen: false,
+		isHidden: false,
 		text: {},
 		description: '',
 		selectedDate: '',
@@ -24,9 +25,12 @@ var app = new Vue({
 	methods: {
 		getActivitiesData() {
 			firebase.database().ref('activities').on('value', function (data) {
-				console.log(data.val())
+
 				app.allActivities = data.val();
+				console.log(app.allActivities)
 				app.myFunction();
+				app.isHidden = true;
+
 			})
 			//			fetch(this.url, {
 			//					method: "GET"
@@ -127,10 +131,10 @@ var app = new Vue({
 					}
 
 					allPosts.push(element);
-					console.log(element)
+
 				}
 				app.messages = allPosts;
-				console.log(app.messages)
+
 
 				setTimeout(function () {
 					$("#chat-window").animate({
@@ -145,22 +149,28 @@ var app = new Vue({
 		logout() {
 			firebase.auth().signOut();
 			app.userLogged = false;
+			app.currentView = 'index';
 		},
 		setcurrentView(view) {
-			//					console.log(view)
+
 			this.currentView = view;
 			if (this.currentView == "general") {
 				app.seen = true;
 				app.getPosts();
 			}
-			if (this.currentView == 'activities')
+			if (this.currentView == 'activities') {
 				this.getActivitiesData()
+			}
+			if (this.currentView == 'index') {
+				app.checkIfUserLoggedIn();
+			}
 
 		},
 		checkIfUserLoggedIn() {
 			firebase.auth().onAuthStateChanged(function (user) {
 				if (user) {
 					app.userLogged = true;
+					app.currentView = 'main';
 				} else {
 					app.userLogged = false;
 				}
@@ -197,10 +207,6 @@ var app = new Vue({
 				type: 'date'
 			});
 		},
-
-
-
-
 		getSelectedActivities() {
 			var activities = this.allActivities;
 			var filteredActivities = [];
@@ -219,8 +225,12 @@ var app = new Vue({
 			console.log(filteredActivities)
 		},
 
+		show: function (shown, hidden) {
+			document.getElementById(shown).style.display = 'block';
+			document.getElementById(hidden).style.display = 'none';
+			return false;
 
 
-
+		}
 	}
 });

@@ -16,7 +16,7 @@
 	<link href="https://cdn.rawgit.com/mdehoog/Semantic-UI-Calendar/76959c6f7d33a527b49be76789e984a0a407350b/dist/calendar.min.css" rel="stylesheet" type="text/css" />
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 	<link rel="stylesheet" href="theme1.css">
-	
+
 
 
 
@@ -30,8 +30,8 @@
 			<div class="header">
 
 				<div class="login-logout">
-					<button id="login" v-if="userLogged == false" @click="login(); setcurrentView('main')">Log in</button>
-					<button id="logout" v-if="userLogged == true" @click="logout()">Log out</button>
+					<button id="login" v-if="userLogged == false" @click="login()">Log in</button>
+
 				</div>
 			</div>
 
@@ -51,6 +51,7 @@
 
 			</div>
 
+			<button id="logout" @click="logout()">Log out</button>
 			<div class="title">
 
 
@@ -179,21 +180,33 @@
 				</div>
 				<button @click="getSelectedActivities">Filter</button>
 
-
+<div class="alertmsg" v-if="activities.length == 0" v-bind:class="{hidden : isHidden}">There is no match for selected filter!</div>
+				
+				
 
 				<h2>Activities</h2>
 
-				
-				
 				<div class="choice">
 					<div class="card" v-for='activity in activities'>
-						<img src="img_avatar.png" alt="Avatar" style="width:100%">
-						<div class="container">
-						<p>{{activity.description}}</p>
-						</div>
-					</div>
 
+						<div class="card-header">
+							<p>{{activity.description}}</p>
+						</div>
+						<div class="card-main">
+							<i class="material-icons">event</i>
+
+							<div class="main description">
+								<p>{{activity.location}}</p>
+								<p>{{activity.time}}</p>
+							</div>
+						</div>
+
+					</div>
 				</div>
+
+
+
+
 
 
 			</div>
@@ -242,6 +255,61 @@
 
 			<div class="content">
 
+		
+
+<!--
+<body>
+
+<div class="header">
+  <h2>Blog Name</h2>
+</div>
+
+<div class="row">
+  <div class="leftcolumn">
+    <div class="card">
+      <h2>TITLE HEADING</h2>
+      <h5>Title description, Dec 7, 2017</h5>
+      <div class="fakeimg" style="height:200px;">Image</div>
+      <p>Some text..</p>
+      <p>Sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.</p>
+    </div>
+    <div class="card">
+      <h2>TITLE HEADING</h2>
+      <h5>Title description, Sep 2, 2017</h5>
+      <div class="fakeimg" style="height:200px;">Image</div>
+      <p>Some text..</p>
+      <p>Sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.</p>
+    </div>
+  </div>
+  <div class="rightcolumn">
+    <div class="card">
+      <h2>About Me</h2>
+      <div class="fakeimg" style="height:100px;">Image</div>
+      <p>Some text about me in culpa qui officia deserunt mollit anim..</p>
+    </div>
+    <div class="card">
+      <h3>Popular Post</h3>
+      <div class="fakeimg">Image</div><br>
+      <div class="fakeimg">Image</div><br>
+      <div class="fakeimg">Image</div>
+    </div>
+    <div class="card">
+      <h3>Follow Me</h3>
+      <p>Some text..</p>
+    </div>
+  </div>
+</div>
+
+<div class="footer">
+  <h2>Footer</h2>
+</div>
+
+</body>
+-->
+
+
+		
+		
 			</div>
 
 			<div class="nav">
@@ -268,7 +336,7 @@
 
 	<script src="https://www.gstatic.com/firebasejs/5.7.2/firebase.js"></script>
 
-	
+
 	<script>
 		// Initialize Firebase
 
