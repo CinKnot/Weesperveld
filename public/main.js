@@ -16,7 +16,7 @@ var app = new Vue({
 		description: '',
 		selectedDate: '',
 		date: '',
-	},
+			},
 
 	created() {
 		//		this.getActivitiesData();
@@ -71,6 +71,19 @@ var app = new Vue({
 			const userName = firebase.auth().currentUser.displayName;
 			const email = firebase.auth().currentUser.email;
 			const photoURL = firebase.auth().currentUser.photoURL;
+			const date = new Date();
+			const hours = date.getHours();
+			const minutes = date.getMinutes();
+			if(date.getHours() < 10 && date.getMinutes() < 10) {
+                hours = '0' + date.getHours();
+                minutes = '0' + date.getMinutes();
+            } else if(date.getMinutes() < 10) {
+                minutes = '0' + date.getMinutes();
+            } else if (date.getHours() < 10) {
+                hours = '0' + date.getHours();
+            }
+			
+			
 
 			var post = {
 				name: userName,
@@ -78,6 +91,9 @@ var app = new Vue({
 				email: email,
 				image: photoURL,
 				result: text,
+				hour: hours,
+				minute: minutes,
+					
 			};
 
 			console.log(post)
@@ -231,6 +247,8 @@ var app = new Vue({
 			return false;
 
 
-		}
+		},
+
+		
 	}
 });

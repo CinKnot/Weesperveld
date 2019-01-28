@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+<html lang="en">
 
 <head>
 	<meta charset="UTF-8">
@@ -69,7 +70,9 @@
 
 		<div v-if="currentView=='general'" class='view general-chat'>
 			<div class="header">
-				<button type="button" v-on:click="setcurrentView('main')">Back<i class="material-icons">arrow_back</i></button>
+				<button type="button" v-on:click="setcurrentView('main')">Home &larr;
+					<!--				<i class="material-icons">arrow_back</i>-->
+				</button>
 				<img class="image1" src="images/city2-borderless2.png" alt="the logo of Leeuwenveld" />
 
 			</div>
@@ -96,10 +99,11 @@
 
 					<div class="each-post" v-for="post in messages" :class="post.user">
 						<div class="username-image">
-							<div class="username">{{post.name}}</div>
+							<div class="username">{{post.name}} <span id=“time”>{{post.hour}}:{{post.minute}}</span> </div>
 							<div class="image">
 								<img class="profile-image" :src="post.image" alt="profile picture">
 							</div>
+							<!--							<span class=“time”>{{post.hour}}:{{post.minute}}</span>-->
 						</div>
 						<div class="post-text">
 							{{post.body}}
@@ -126,7 +130,9 @@
 
 		<div v-if="currentView=='topic'" class='view chat-topic'>
 			<div class="header">
-				<button type="button" v-on:click="setcurrentView('general')">Back<i class="material-icons">arrow_back</i></button>
+				<button type="button" v-on:click="setcurrentView('main')">Home &larr;
+					<!--				<i class="material-icons">arrow_back</i>-->
+				</button>
 			</div>
 
 			<div class="title">
@@ -145,7 +151,7 @@
 		<div v-if="currentView=='detail'" class='view chat-detail'>
 
 			<div class="header">
-				<button type="button" v-on:click="setcurrentView('topic')">Back<i class="material-icons">arrow_back</i></button>
+				<button type="button" v-on:click="setcurrentView('main')">Home<i class="material-icons">arrow_back</i></button>
 			</div>
 
 			<div class="title">
@@ -161,7 +167,9 @@
 		<div v-if="currentView=='activities'" class='view act-calendar'>
 
 			<div class="header">
-				<button type="button" v-on:click="setcurrentView('detail')">Back<i class="material-icons">arrow_back</i></button>
+				<button type="button" v-on:click="setcurrentView('main')">Home &larr;
+					<!--				<i class="material-icons">arrow_back</i>-->
+				</button>
 			</div>
 
 			<div class="title">
@@ -178,13 +186,14 @@
 						<input type="text" placeholder="Date">
 					</div>
 				</div>
-				<button @click="getSelectedActivities">Filter</button>
+				<div class="select">
+					<button @click="getSelectedActivities">Filter</button></div>
 
-<div class="alertmsg" v-if="activities.length == 0" v-bind:class="{hidden : isHidden}">There is no match for selected filter!</div>
-				
-				
+				<div class="alertmsg" v-if="activities.length == 0" v-bind:class="{hidden : isHidden}">There is no match for selected filter!</div>
 
-				<h2>Activities</h2>
+
+
+				<!--				<h2>Activities</h2>-->
 
 				<div class="choice">
 					<div class="card" v-for='activity in activities'>
@@ -223,7 +232,9 @@
 
 
 			<div class="header">
-				<button type="button" v-on:click="setcurrentView('activities')">Back<i class="material-icons">arrow_back</i></button>
+				<button type="button" v-on:click="setcurrentView('main')">Home&larr;
+					<!--				<i class="material-icons">arrow_back</i>-->
+				</button>
 			</div>
 
 			<div class="title">
@@ -245,7 +256,9 @@
 		<div v-if="currentView=='actuals'" class='view news'>
 
 			<div class="header">
-				<button type="button" v-on:click="setcurrentView('overview')">Back<i class="material-icons">arrow_back</i></button>
+				<button type="button" v-on:click="setcurrentView('main')">Home &larr;
+					<!--				<i class="material-icons">arrow_back</i>-->
+				</button>
 			</div>
 
 			<div class="title">
@@ -255,62 +268,125 @@
 
 			<div class="content">
 
-		
 
-<!--
-<body>
+				<div class="columns">
+					<div class="column main-column">
 
-<div class="header">
-  <h2>Blog Name</h2>
-</div>
+						<article class="article">
 
-<div class="row">
-  <div class="leftcolumn">
-    <div class="card">
-      <h2>TITLE HEADING</h2>
-      <h5>Title description, Dec 7, 2017</h5>
-      <div class="fakeimg" style="height:200px;">Image</div>
-      <p>Some text..</p>
-      <p>Sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.</p>
-    </div>
-    <div class="card">
-      <h2>TITLE HEADING</h2>
-      <h5>Title description, Sep 2, 2017</h5>
-      <div class="fakeimg" style="height:200px;">Image</div>
-      <p>Some text..</p>
-      <p>Sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.</p>
-    </div>
-  </div>
-  <div class="rightcolumn">
-    <div class="card">
-      <h2>About Me</h2>
-      <div class="fakeimg" style="height:100px;">Image</div>
-      <p>Some text about me in culpa qui officia deserunt mollit anim..</p>
-    </div>
-    <div class="card">
-      <h3>Popular Post</h3>
-      <div class="fakeimg">Image</div><br>
-      <div class="fakeimg">Image</div><br>
-      <div class="fakeimg">Image</div>
-    </div>
-    <div class="card">
-      <h3>Follow Me</h3>
-      <p>Some text..</p>
-    </div>
-  </div>
-</div>
-
-<div class="footer">
-  <h2>Footer</h2>
-</div>
-
-</body>
--->
+							<h4>BUSINESS PARKS CAN BE MUCH MORE FUTURE-PROOF</h4>
+							<p>
+								WEESP - The Weesper business is in good shape. Employment is picking up, consumer confidence is growing and the companies are noticing that. However, it remains important to anticipate developments and any decline in growth, Alderman Astrid Heijstee of Economic Affairs warns.</p>
 
 
-		
-		
+
+							<button type="button" class="btn btn-info" data-toggle="collapse" data-target="#demo">News</button>
+							<div id="demo" class="collapse">
+								<p> The economy in the Vecht City is in that respect in line with the national picture. "At Weesper companies there is plenty of growth, but you also see that for some it is less quick than expected or hoped." Legislation and regulations in the field of energy and the environment play a role in this, according to the WSP alderman. "As a result, companies will be given more burdens and they will have to pay back somewhere." During the company visits that I regularly do with my fellow aldermen, I see that in any case those companies are fully anticipating. "This is also my appeal to other companies: do not put your head in the sand. "Profiling
+									Heijstee also said that she wants to establish a clear profile for the Weesper business parks with the business association IVW and the entrepreneurs. "What kind of business area do you want to be? I want to make clear what Weesp stands for." Such a message can be attractive for companies that want to establish themselves in Weesp, where according to Heijstee there are already a lot of them. But it can also mean that Weesp will no longer make any effort for certain companies to keep them for Weesp. Which profile suits the best for Weesp, Heijstee would like to find out together with the entrepreneurs.</p>
+							</div>
+
+						</article>
+
+
+						<article class="article">
+							<h4>TRIATHLETES KNOW HOW TO FIND WEESP TRIATHLON AGAIN</h4>
+							<p>WEESP - The WeesperNieuws Triathlon can once again count on a strong influx of triathletes.</p>
+							<button type="button" class="btn btn-info" data-toggle="collapse" data-target="#demo1">News</button>
+							<div id="demo1" class="collapse">
+								<p>
+									The registration for one kilometer of swimming, 40 kilometers of cycling and 10 kilometers of running started last Friday. After one day, more than a hundred triathletes had signed up. You can register for the triathlon until 29 March.
+									The WeesperNieuws Triathlon is on Sunday 8 September this year. It is then the thirtieth time.
+								</p>
+							</div>
+						</article>
+					</div>
+					<div class="column">
+						<article class="article">
+							<h4>WEESP COLORS WHITE</h4>
+
+							<p>WEESP - It is a bit slippery on the road and you have to dress a bit warmer because of the cold, but it gives nice pictures: Weesp colors white through the snow.</p>
+
+							<button type="button" class="btn btn-info" data-toggle="collapse" data-target="#demo2">Pictures</button>
+							<div id="demo2" class="collapse">
+
+
+								<div class="row">
+									<div class="column">
+										<img class="image10" src="images/weesp1.png" alt="weesp">
+										<img class="image11" src="images/weesp2.png" alt="weesp">
+										<img class="image12" src="images/weesp3.png" alt="weesp">
+										<img class="image13" src="images/weesp4.jpg" alt="weesp">
+										<img class="image14" src="images/weesp5.jpg" alt="weesp">
+										<img class="image15" src="images/weesp6.jpg" alt="weesp">
+										<img class="image16" src="images/weesp7.jpg" alt="weesp">
+									</div>
+
+									<div class="column">
+										<img class="image14" src="images/weesp5.jpg" alt="weesp">
+										<img class="image18" src="images/weesp8.png" alt="weesp">
+										<img class="image12" src="images/weesp2.png" alt="weesp">
+										<img class="image17" src="images/weesp7.jpg" alt="weesp">
+										<img class="image13" src="images/weesp3.png" alt="weesp">
+										<img class="image15" src="images/weesp5.jpg" alt="weesp">
+									</div>
+									<div class="column">
+										<img class="image10" src="images/weesp1.png" alt="weesp">
+										<img class="image11" src="images/weesp2.png" alt="weesp">
+										<img class="image12" src="images/weesp3.png" alt="weesp">
+										<img class="image13" src="images/weesp4.jpg" alt="weesp">
+										<img class="image14" src="images/weesp5.jpg" alt="weesp">
+										<img class="image15" src="images/weesp6.jpg" alt="weesp">
+										<img class="image16" src="images/weesp7.jpg" alt="weesp">
+									</div>
+									<div class="column">
+										<img class="image14" src="images/weesp5.jpg" alt="weesp">
+										<img class="image18" src="images/weesp8.png" alt="weesp">
+										<img class="image12" src="images/weesp2.png" alt="weesp">
+										<img class="image17" src="images/weesp7.jpg" alt="weesp">
+										<img class="image13" src="images/weesp3.png" alt="weesp">
+										<img class="image15" src="images/weesp5.jpg" alt="weesp">
+									</div>
+								</div>
+
+
+
+							</div>
+
+						</article>
+						<article class="article">
+							<h4>HAVO VECHTSTEDE COLLEGE again 'EXCELLENT'</h4>
+							<p>WEESP - Het Vechtstede College heeft haar predicaat als 'excellente school' geprolongeerd. De havo-tak van de school mag tot 2021 excellent genoemd worden.</p>
+							<button type="button" class="btn btn-info" data-toggle="collapse" data-target="#demo3">News</button>
+							<div id="demo3" class="collapse">
+								<p>The Weesper school has also been excellent in recent years. It is no surprise that the school does a good job: both the havo and vwo departments of the school already have the 'good' rating of the education inspectorate.
+									The Vechtstede College may once again call itself excellent because of the specific HAVO approach and HAVO didactics. "This approach ensures very high up-stream figures (students grow above primary school advice) and a good connection to higher professional education, while at the same time the committee appreciates the good atmosphere, the motivated students and the focus on innovation", says the Vechtstede College .</p>
+							</div>
+
+						</article>
+
+						<article class="article">
+							<h4>GET UP EARLY FOR "SUPERBLOODMOON"</h4>
+							<p>WEESP - You had to get up early for it, but then you made something very unique: the 'superblood moon' was also visible above Weesp this morning.</p>
+
+							<button type="button" class="btn btn-info" data-toggle="collapse" data-target="#demo4">News</button>
+							<div id="demo4" class="collapse">
+
+								<p>The lunar eclipse of this morning was a special one. In addition to the moon in the shadow of the earth, he was also relatively close to the earth. In short: a lunar eclipse and a supermaan in one. This is very rare.
+									The fact that several Weespers put their alarms to experience the rare natural phenomenon is shown by the photos that our editorial staff has received.
+								</p>
+							</div>
+
+						</article>
+					</div>
+
+				</div>
+
+
+
+
 			</div>
+
 
 			<div class="nav">
 				<button type="button" v-on:click="setcurrentView('general')">Chat<i class='fa fa-wechat'></i></button>

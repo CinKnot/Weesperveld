@@ -18,12 +18,12 @@ body,
 }
 
 .view > .title {
-	height: 15%;
+	height: 10%;
 	width: 100%;
 }
 
 .view > .content {
-	height: 55%;
+	height: 60%;
 	width: 100%;
 }
 
@@ -38,6 +38,7 @@ button#logout {
 	border-style: none;
 	padding: 5px 7px;
 	color: black;
+	margin-left: 5%;
 
 }
 
@@ -122,6 +123,7 @@ button,
 	margin-left: 5%;
 	border-radius: 0;
 	box-sizing: border-box;
+
 }
 
 .general-chat > .header > img {
@@ -287,26 +289,24 @@ button#submit {
 	color: skyblue;
 }
 
+button,
+	{
+	margin-top: 5%;
+}
+
 .act-calendar > .content {
 	font-family: 'Open Sans', sans-serif;
 	font-weight: bold;
 	color: black;
+	margin-left: 5%;
 }
 
-/*
-.act-calendar > .content > table {
-	font-family: 'Open Sans', sans-serif;
-	font-weight: bold;
-	color: white;
-	display: flex;
-	flex-direction: column;
-	justify-content: space-between;
-	height: 100%;
-	table-layout: fixed;
-}
-*/
 .act-calendar > .content {
 	overflow: scroll;
+}
+
+.act-calendar > .title {
+	margin-left: 5%;
 }
 
 .selection {
@@ -364,24 +364,24 @@ body {
 
 .card {
 
-	width: 150px;
-	
+	width: 90%;
+
 
 	display: flex;
-	
+
 	flex-direction: column;
-	
+
 
 	border: 1px solid #EF9A9A;
-	
+
 	border-radius: 4px;
-	
+
 
 	overflow: hidden;
-	
+
 
 	margin: 5px;
-	
+	margin-top: 5%;
 
 }
 
@@ -392,11 +392,11 @@ body {
 
 	text-align: center;
 
-	font-size: 12px;
+	font-size: 16px;
 
 	font-weight: 600;
 
-	border-bottom: 1px solid #EF9A9A;
+	border-bottom: 2px solid #EF9A9A;
 
 	background-color: #FFEBEE;
 
@@ -409,23 +409,23 @@ body {
 .card-main {
 
 	display: flex;
-	
+
 	flex-direction: column;
-	
+
 	justify-content: center;
-	
+
 	align-items: center;
-	
+
 	padding: 15px 10px;
 	color: #D32F2F;
-	
+
 }
 
 
 
 .material-icons {
 
-	font-size: 36px;
+	font-size: 40px;
 
 	color: #D32F2F;
 
@@ -439,10 +439,91 @@ body {
 
 	color: #D32F2F;
 
-	font-size: 12px;
+	font-size: 16px;
 
 	text-align: center;
-	
 
 }
 
+html {
+	font-family: sans-serif;
+}
+
+.columns {
+	display: flex;
+}
+
+.column {
+	background: #eee;
+	border: 5px solid #ccc;
+	display: flex;
+	flex: 1;
+	flex-direction: column;
+	padding: 10px;
+	height: 470px;
+	overflow: auto;
+}
+
+.main-column {
+	flex: 2;
+	overflow: auto;
+}
+
+.article {
+	background: mediumseagreen;
+	border: 5px solid seagreen;
+	color: white;
+	flex: 1;
+	margin: 10px;
+	padding: 20px;
+}
+
+.row {
+	display: flex;
+	flex-wrap: wrap;
+	padding: 0 4px;
+}
+
+/* Create four equal columns that sits next to each other */
+.column {
+	flex: 25%;
+	max-width: 25%;
+	padding: 0 4px;
+}
+
+.column img {
+	margin-top: 8px;
+	vertical-align: middle;
+}
+
+/* Responsive layout - makes a two column-layout instead of four columns */
+@media screen and (max-width: 800px) {
+	.column {
+		flex: 50%;
+		max-width: 50%;
+	}
+}
+
+/* Responsive layout - makes the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 600px) {
+	.column {
+		flex: 100%;
+		max-width: 100%;
+	}
+}
+
+.news > .content {
+	overflow: auto;
+}
+
+.alertmsg {
+	margin-top: 10%;
+}
+
+.select {
+	margin-top: 5%;
+}
+
+span {
+	padding: 6%;
+}
