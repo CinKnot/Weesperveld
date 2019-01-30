@@ -16,7 +16,7 @@ var app = new Vue({
 		description: '',
 		selectedDate: '',
 		date: '',
-			},
+	},
 
 	created() {
 		//		this.getActivitiesData();
@@ -29,6 +29,7 @@ var app = new Vue({
 				app.allActivities = data.val();
 				console.log(app.allActivities)
 				app.myFunction();
+				app.getTwoWeeksTimeActivities()
 				app.isHidden = true;
 
 			})
@@ -74,16 +75,16 @@ var app = new Vue({
 			const date = new Date();
 			const hours = date.getHours();
 			const minutes = date.getMinutes();
-			if(date.getHours() < 10 && date.getMinutes() < 10) {
-                hours = '0' + date.getHours();
-                minutes = '0' + date.getMinutes();
-            } else if(date.getMinutes() < 10) {
-                minutes = '0' + date.getMinutes();
-            } else if (date.getHours() < 10) {
-                hours = '0' + date.getHours();
-            }
-			
-			
+			if (date.getHours() < 10 && date.getMinutes() < 10) {
+				hours = '0' + date.getHours();
+				minutes = '0' + date.getMinutes();
+			} else if (date.getMinutes() < 10) {
+				minutes = '0' + date.getMinutes();
+			} else if (date.getHours() < 10) {
+				hours = '0' + date.getHours();
+			}
+
+
 
 			var post = {
 				name: userName,
@@ -93,7 +94,7 @@ var app = new Vue({
 				result: text,
 				hour: hours,
 				minute: minutes,
-					
+
 			};
 
 			console.log(post)
@@ -107,7 +108,6 @@ var app = new Vue({
 			return firebase.database().ref().update(updates);
 			app.getPosts();
 		},
-
 		findHashtags(searchtextInput) {
 			var regexp = /\B\#\w\w+\b/g
 			result = searchtextInput.match(regexp);
@@ -117,8 +117,6 @@ var app = new Vue({
 				return false;
 			}
 		},
-
-
 		getPosts: function () {
 			app.filterTheHashtagMessages("#Blah");
 			firebase.database().ref('chat').on('value', function (data) {
@@ -216,8 +214,6 @@ var app = new Vue({
 			//					var linkingTheText = document.getElementById("text");
 			//					linkingTheText.innerHTML = repl;
 		},
-
-
 		myFunction() {
 			$('#example3').calendar({
 				type: 'date'
@@ -240,7 +236,6 @@ var app = new Vue({
 			this.activities = filteredActivities;
 			console.log(filteredActivities)
 		},
-
 		show: function (shown, hidden) {
 			document.getElementById(shown).style.display = 'block';
 			document.getElementById(hidden).style.display = 'none';
@@ -248,7 +243,23 @@ var app = new Vue({
 
 
 		},
-
+		getTwoWeeksTimeActivities() {
+			let twoWeeksActivities = [];
+			let twoWeeksTime = new Date().getTime() + 1209600000;
+			for (var i = 0; i < this.allActivities.length; i++) {
+				let activity = this.allActivities[i];
+				if (new Date(activity.date).getTime() < twoWeeksTime)
+					twoWeeksActivities.push(activity);
+			}
+			app.activities = twoWeeksActivities;
+		}
 		
+
+//		var current = new Date(); //'Mar 11 2015' current.getTime() = 1426060964567
+//		var followingDay = new Date(current.getTime() + 86400000); // + 1 day in ms
+//		followingDay.toLocaleDateString();
+		//
+		//
+
 	}
 });
